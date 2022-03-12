@@ -6,6 +6,11 @@ state("KINGDOM HEARTS II FINAL MIX", "GLOBAL")
 	bool fightend: "KINGDOM HEARTS II FINAL MIX.exe", 0xAD6BC0;
 	byte titlescreen: "KINGDOM HEARTS II FINAL MIX.exe", 0x711438;
 	byte soraHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20C98;
+	short rikuHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20A20;
+	short barbosaHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A202B8;
+	short demyxHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20530;
+	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0D23A;
+	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B71F4;
 	byte worldID: "KINGDOM HEARTS II FINAL MIX.exe", 0x714DB8;
 	byte roomID: "KINGDOM HEARTS II FINAL MIX.exe", 0x714DB9;
 	byte newgame: "KINGDOM HEARTS II FINAL MIX.exe", 0xBEBE08;
@@ -23,7 +28,19 @@ state("KINGDOM HEARTS II FINAL MIX", "JP")
 	bool fightend: "KINGDOM HEARTS II FINAL MIX.exe", 0xAD5BC0;
 	byte titlescreen: "KINGDOM HEARTS II FINAL MIX.exe", 0x710438;
 	byte soraHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1FC98;
-	//To-do: Get Memory Addresses for JP
+	short rikuHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1FA20;
+	short barbosaHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1F2B8;
+	short demyxHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1F530;
+	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0C23A;
+	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B61F4;
+	byte worldID: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DB8;
+	byte roomID: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DB9;
+	byte newgame: "KINGDOM HEARTS II FINAL MIX.exe", 0xBECE08;
+	byte eventID1: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DBC;
+	byte eventID2: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DBE;
+	byte eventID3: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DC0;
+	int tempMemBank: "KINGDOM HEARTS II FINAL MIX.exe", 0xBECE10;
+	//To-do: Test Memory Pointers for JP. Coverted from: [Global - 0x1000 = JP]
 }
 
 init
@@ -44,14 +61,12 @@ init
 startup
 {
 	vars.booting = false;
-	//any%
 		settings.Add("startREADME", false, "Auto-Start README (Hover Over)");
-		settings.SetToolTip("startREADME", "Currently compatible with any% for now.\nMake sure to reset before selecting New Game.\nSet timer to start at 0.31 for Any%.");
+		settings.SetToolTip("startREADME", "To Enable: Click the button ABOVE called 'Start'.\nCurrently compatible with any% for now.\nMake sure to reset before selecting New Game.\nSet timer to start at 0.31 for Any%.");
 		settings.Add("splitREADME", false, "Auto-Split README (Hover Over)");
-		settings.SetToolTip("splitREADME", "Select the category you wish to run, the desired worlds, as well as the world's ending split.\nDo not have multiple categories selected (ex. Any% and Data Org).");
+		settings.SetToolTip("splitREADME", "To Enable: Click the button ABOVE called 'Split'.\nSelect the category you wish to run, the desired worlds, as well as the world's ending split.\nDo not have multiple categories selected (ex. Any% and Data Org).");
 		settings.Add("Instructions 4", false, "--------------------------------");
-
-		settings.Add("any", false, "Any% - Set timer to 0.31 if Auto Starting as well.");
+		settings.Add("any", false, "Any%");
 			settings.Add("STT", true, "Roxas Section", "any");
 				settings.Add("02-06-5B", false, "Mail Delivery", "STT");
 				settings.Add("02-22-9D", false, "Twilight Thorn", "STT");
@@ -70,6 +85,10 @@ startup
 				settings.Add("04-08-34", true , "Bailey","HB1");
 
 			settings.Add("LoD1", true, "Land of Dragons 1", "any");
+				settings.Add("Missions", false, "Missions", "LoD1");
+					settings.Add("08-02-45", false, "Mission 1: The Ambush", "Missions");
+					settings.Add("08-02-50", false, "Mission 2: The Ambush", "Missions");
+					settings.Add("08-01-46", false, "Mission 3: The Search", "Missions");
 				settings.Add("08-05-48", false, "Cave fight", "LoD1");
 				settings.Add("08-07-49", false, "Summit timed fight", "LoD1");
 				settings.Add("08-09-4B", true , "Shan-Yu","LoD1");
@@ -86,10 +105,10 @@ startup
 
 			settings.Add("0C-00-33", false, "Minnie Escort","any");
 			settings.Add("TR", true, "Timeless River", "any");
-				settings.Add("0D-04-36", false, "Lilliput window","TR");
-				settings.Add("0D-06-38", false, "Scene of the fire window","TR");
-				settings.Add("0D-05-37", false, "Building Site window","TR");
-				settings.Add("0D-07-39", false, "Mickey's house window","TR");
+				settings.Add("0D-05-37", false, "Construction Site Window","TR");
+				settings.Add("0D-04-36", false, "Tiny Town (Lilliput) Window","TR");
+				settings.Add("0D-06-38", false, "Scene of the Fire Window","TR");
+				settings.Add("0D-07-39", false, "Mickey's House window","TR");
 				settings.Add("0D-03-35", true , "Timeless River Pete","TR");
 
 			settings.Add("PR1", true, "Port Royal 1", "any");
@@ -139,11 +158,12 @@ startup
 				settings.Add("05-0F-52", true , "Xaldin","BC2");
 
 			settings.Add("LoD2", true, "Land of Dragons 2", "any");
+				settings.Add("08-07-4C", false, "Riku", "LoD2");
 				settings.Add("08-08-51", false, "Imperial square heartless", "LoD2");
 				settings.Add("08-08-4F", true , "Storm Rider","LoD2");
 
 			settings.Add("TT3", true , "Twilight Town 3","any");
-				//settings.Add("02-29-BA", false, "Mansion Nobody waves", "TT3"); - Double Splits on opening cutscene
+				settings.Add("02-29-BA", false, "Mansion Nobody waves", "TT3");
 				settings.Add("02-28-A1", true , "Betwixt and Between","TT3");	
 
 			settings.Add("TWTNW",true, "The World that Never Was", "any");
@@ -159,8 +179,6 @@ startup
 				settings.Add("12-16-48", false, "Dragon Xemnas","KH");
 				settings.Add("12-17-49", false, "Armored Xemnas 2","KH");
 				settings.Add("12-14-4A", true , "Final Xemnas","KH");
-	
-	//dataorg
 		settings.Add("Data Org instructions", false, "--------------------------------");
 		settings.Add("dataorg", false, "Data Org & README (Hover Over)");
 		settings.SetToolTip("dataorg", "Make sure this is selected and Any% is not selected if running Data Org.\nAuto-Start is not currently supported for Data Org");
@@ -168,22 +186,18 @@ startup
 
 start
 {
-	if(vars.startCounter==0 && current.newgame == 4){
-		vars.startCounter = 1;
-	}
+	if (current.titlescreen != 1)return;
+	
+	if(vars.startCounter==0 && current.newgame==4)vars.startCounter = 1;
+	
 	if(vars.startCounter==1){	
-		if(current.tempMemBank == 0){
-			vars.startCounter = 0;
-		}
-		if(current.newgame == 2){
-			vars.startCounter = 2;
-		}
+		if(current.tempMemBank == 0)vars.startCounter = 0;
+		else if(current.newgame == 2)vars.startCounter = 2;
 	}
+	
 	if(vars.startCounter==2){
-		if(current.newgame == 4){
-			vars.startCounter = 1;
-		}
-		if(current.tempMemBank == 0){
+		if(current.newgame == 4)vars.startCounter = 1;
+		else if(current.tempMemBank == 0){
 			vars.startCounter = 0;
 			return true;
 		}
@@ -192,38 +206,79 @@ start
 
 split
 {	
-	//startCounter didn't reset. Happens if you start it manually while using 2fmSoftReset.lua
-	if(vars.startCounter != 0) vars.startCounter = 0;
+	if(vars.startCounter != 0)vars.startCounter = 0;
 	
-	// Converts location IDs to string to compare against toggled splits.
 	string currentLocation = string.Format("{0:X2}-{1:X2}-{2:X2}", current.worldID, current.roomID, current.eventID3);
 	string oldLocation     = string.Format("{0:X2}-{1:X2}-{2:X2}", old.worldID, old.roomID, old.eventID3);
 	
-	// Timer to prevent double splits from occuring.
-	if(vars.splitTimer == 0){
-		// Determines if a fight is over. 
-		if(current.fightend!=old.fightend && current.soraHP > 0){
-			//print("Fight ended! Loc: "+currentLocation);
+	bool alive = false;
+	switch (currentLocation) {
+		case "12-14-4A": 
+		case "12-14-69": 
+			if(current.rikuHP > 0 && current.soraHP > 0)alive = true;
+			break;
+		case "10-0A-3C":
+			if(current.barbosaHP == 0)alive = true;
+			break;
+		case "04-04-37":
+		case "04-04-72":
+			if(current.demyxHP == 0)alive = true;
+			break;
+		case "08-07-4C":
+			if(current.rikuHP <= 228)alive = true;
+			break;
+		case "04-08-34":
+		case "08-01-46":
+		case "08-02-45":
+		case "08-02-50":
+		case "08-09-4B":
+		case "12-0E-3A":
+		case "12-0E-65":
+			if (current.soraGauge == 0)vars.splitTimer = 100;
+			else if (current.soraHP > 0)alive = true;
+			break;
+		case "0C-02-01":
+		case "0C-00-33":
+		case "0D-04-36":
+		case "0D-06-38":
+		case "0D-05-37":
+		case "0D-07-39":
+			if (current.soraGauge == 17096)vars.splitTimer = 100;
+			else if (current.soraHP > 0)alive = true;
+			break;
+		case "10-07-3A":
+			if (current.medalion!=old.medalion && current.medalion == 0)vars.splitTimer = 100;
+			else if (current.soraHP > 0)alive = true;
+			break;
+		default:
+			if(current.soraHP > 0)alive = true;
+			break;
+	}
+	
+	if(vars.splitTimer == 0 && alive){
+		if (currentLocation!=oldLocation){
+			//print("C:"+currentLocation+" O:"+oldLocation);
+			switch(oldLocation) {
+				case "02-1C-04":
+				case "04-0D-08":
+				case "02-02-48":
+				case "12-19-48":
+					return settings[oldLocation];
+					break;
+				case "02-0E-05":
+					vars.splitTimer = 100;
+					break;
+				default:
+					break;
+			}
+		}
+		if(current.fightend!=old.fightend){
+			print("Fight ended! Loc: "+currentLocation);
 			vars.splitTimer = 10;
 			if(settings["any"]){
 				return settings[currentLocation];
 			}
 			else if (settings["dataorg"]) return true;
-		}
-		// For Event based splits.
-		if (currentLocation!=oldLocation){
-			//print("C:"+currentLocation+" O:"+oldLocation);
-			switch(oldLocation) {
-				case "02-1C-04": //TT1
-				case "04-0D-08": //Chicken Little
-				case "02-02-48": //TT2
-				case "12-19-48": //Core
-					//print("Sora just left event: "+oldLocation);
-					return settings[oldLocation];
-					break;
-				default:
-					break;
-			}
 		}
 	}
 	else if(current.fightend == false && vars.splitTimer > 0){
