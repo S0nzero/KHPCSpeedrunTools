@@ -86,7 +86,7 @@ startup
 
 			settings.Add("LoD1", true, "Land of Dragons 1", "any");
 				settings.Add("Missions", false, "Missions", "LoD1");
-					settings.Add("08-02-45", false, "Mission 1: The Ambush", "Missions");
+					settings.Add("08-02-45", false, "Mission 1: The Surprise Attack", "Missions");
 					settings.Add("08-02-50", false, "Mission 2: The Ambush", "Missions");
 					settings.Add("08-01-46", false, "Mission 3: The Search", "Missions");
 				settings.Add("08-05-48", false, "Cave fight", "LoD1");
