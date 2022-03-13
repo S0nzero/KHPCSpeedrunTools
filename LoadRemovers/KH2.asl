@@ -7,8 +7,8 @@ state("KINGDOM HEARTS II FINAL MIX", "GLOBAL")
 	byte titlescreen: "KINGDOM HEARTS II FINAL MIX.exe", 0x711438;
 	byte soraHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20C98;
 	short rikuHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20A20;
-	short barbosaHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A202B8;
-	short demyxHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20530;
+	byte jackHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20530;
+	byte cloneCount: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0D148;
 	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0D23A;
 	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B71F4;
 	byte worldID: "KINGDOM HEARTS II FINAL MIX.exe", 0x714DB8;
@@ -29,8 +29,8 @@ state("KINGDOM HEARTS II FINAL MIX", "JP")
 	byte titlescreen: "KINGDOM HEARTS II FINAL MIX.exe", 0x710438;
 	byte soraHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1FC98;
 	short rikuHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1FA20;
-	short barbosaHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1F2B8;
-	short demyxHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1F530;
+	byte jackHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1F530;
+	byte cloneCount: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0C148;
 	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0C23A;
 	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B61F4;
 	byte worldID: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DB8;
@@ -218,11 +218,11 @@ split
 			if(current.rikuHP > 0 && current.soraHP > 0)alive = true;
 			break;
 		case "10-0A-3C":
-			if(current.barbosaHP == 0)alive = true;
+			if(current.jackHP > 0 && current.soraHP > 0)alive = true;
 			break;
 		case "04-04-37":
 		case "04-04-72":
-			if(current.demyxHP == 0)alive = true;
+			if(current.cloneCount == 0 && current.soraHP > 0)alive = true;
 			break;
 		case "08-07-4C":
 			if(current.rikuHP <= 228)alive = true;
@@ -273,7 +273,7 @@ split
 			}
 		}
 		if(current.fightend!=old.fightend){
-			print("Fight ended! Loc: "+currentLocation);
+			//print("Fight ended! Loc: "+currentLocation);
 			vars.splitTimer = 10;
 			if(settings["any"]){
 				return settings[currentLocation];
