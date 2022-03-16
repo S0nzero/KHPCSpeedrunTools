@@ -6,8 +6,7 @@ state("KINGDOM HEARTS II FINAL MIX", "GLOBAL")
 	bool fightend: "KINGDOM HEARTS II FINAL MIX.exe", 0xAD6BC0;
 	byte titlescreen: "KINGDOM HEARTS II FINAL MIX.exe", 0x711438;
 	byte soraHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20C98;
-	short rikuHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20A20;
-	byte jackHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20530;
+	short storyHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A20A20;
 	byte cloneCount: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0D148;
 	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0D23A;
 	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B71F4;
@@ -28,8 +27,7 @@ state("KINGDOM HEARTS II FINAL MIX", "JP")
 	bool fightend: "KINGDOM HEARTS II FINAL MIX.exe", 0xAD5BC0;
 	byte titlescreen: "KINGDOM HEARTS II FINAL MIX.exe", 0x710438;
 	byte soraHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1FC98;
-	short rikuHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1FA20;
-	byte jackHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1F530;
+	short storyHP: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A1FA20;
 	byte cloneCount: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0C148;
 	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0C23A;
 	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B61F4;
@@ -214,18 +212,16 @@ split
 	bool alive = false;
 	switch (currentLocation) {
 		case "12-14-4A": 
-		case "12-14-69": 
-			if(current.rikuHP > 0 && current.soraHP > 0)alive = true;
-			break;
+		case "12-14-69":
 		case "10-0A-3C":
-			if(current.jackHP > 0 && current.soraHP > 0)alive = true;
+			if(current.storyHP > 0 && current.soraHP > 0)alive = true;
 			break;
 		case "04-04-37":
 		case "04-04-72":
 			if(current.cloneCount == 0 && current.soraHP > 0)alive = true;
 			break;
 		case "08-07-4C":
-			if(current.rikuHP <= 228)alive = true;
+			if(current.storyHP <= 228)alive = true;
 			break;
 		case "04-08-34":
 		case "08-01-46":
