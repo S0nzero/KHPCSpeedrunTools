@@ -74,9 +74,11 @@ startup
 				settings.Add("02-0C-7D", false, "7 Wonders: Bag", "STT");
 				settings.Add("02-14-89", true , "Axel 2", "STT");
 
-			settings.Add("TT1", true, "Twilight Town 1", "any");
+			settings.Add("TT1", true, "Twilight Town 1 [Hover Over]", "any");
+			settings.SetToolTip("TT1", "Edit the file and change all instances of '02-1C-04' to '02-1B-04' if you want to split on the cutscene leaving Tower and not the Door.");
 				settings.Add("02-1E-99", false, "Yen Sid's Tower Last Fight","TT1");
-				settings.Add("02-1C-04", true , "Leaving Yen Sid's Tower (TT1)","TT1");
+				settings.Add("02-1C-04", true , "Leaving Tower (TT1)","TT1");
+	
 
 			settings.Add("HB1", true, "Hollow Bastion 1", "any");	
 				settings.Add("04-09-33", false, "Nobody battle", "HB1");
@@ -137,7 +139,11 @@ startup
 				settings.Add("04-10-41", false, "Final Fantasy Fights","HB3");
 				settings.Add("04-11-42", true , "1K Heartless","HB3");
 
-			settings.Add("05-03-0B", false, "Rumbling Rose", "any");
+			settings.Add("BC2", true, "Beast's castle 2", "any");
+				settings.Add("05-03-0B", false, "Acquire Rumbling Rose", "BC2");
+				settings.Add("05-03-14-W", false, "Leaving BC after Rumbling Rose", "BC2");
+				settings.Add("05-00-4B", false, "Entrance hall Nobody fight","BC2");
+				settings.Add("05-0F-52", true , "Xaldin","BC2");
 
 			settings.Add("PR2", true, "Port Royal 2","any");
 				settings.Add("10-12-55", false, "Grim Reaper 1","PR2");
@@ -150,10 +156,6 @@ startup
 			settings.Add("AG2", true, "Agrabah 2", "any");
 				settings.Add("07-0E-3D", false, "Escape from the ruins (Carpet autoscroller)", "AG2");
 				settings.Add("07-05-3E", true , "Genie Jafar","AG2");
-
-			settings.Add("BC2", true, "Beast's castle 2", "any");
-				settings.Add("05-00-4B", false, "Entrance hall Nobody fight","BC2");
-				settings.Add("05-0F-52", true , "Xaldin","BC2");
 
 			settings.Add("LoD2", true, "Land of Dragons 2", "any");
 				settings.Add("08-07-4C", false, "Riku", "LoD2");
@@ -172,7 +174,7 @@ startup
 				settings.Add("12-13-3B", true , "Xemnas 1","TWTNW");
 
 			settings.Add("KH", true, "Final Fights","any");
-				settings.Add("12-19-48", false, "Core","KH");
+				settings.Add("12-19-46", false, "Core","KH");
 				settings.Add("12-18-47", false, "Armored Xemnas 1","KH");
 				settings.Add("12-16-48", false, "Dragon Xemnas","KH");
 				settings.Add("12-17-49", false, "Armored Xemnas 2","KH");
@@ -214,14 +216,14 @@ split
 		case "12-14-4A": 
 		case "12-14-69":
 		case "10-0A-3C":
-			if(current.storyHP > 0 && current.soraHP > 0)alive = true;
+			if(current.storyHP > 0 && current.soraHP > 0) alive = true;
 			break;
 		case "04-04-37":
 		case "04-04-72":
-			if(current.cloneCount == 0 && current.soraHP > 0)alive = true;
+			if(current.cloneCount == 0 && current.soraHP > 0) alive = true;
 			break;
 		case "08-07-4C":
-			if(current.storyHP <= 228)alive = true;
+			if(current.storyHP = 228 && old.storyHP > 228) return settings[currentLocation];
 			break;
 		case "04-08-34":
 		case "08-01-46":
@@ -230,8 +232,8 @@ split
 		case "08-09-4B":
 		case "12-0E-3A":
 		case "12-0E-65":
-			if (current.soraGauge == 0)vars.splitTimer = 100;
-			else if (current.soraHP > 0)alive = true;
+			if (current.soraGauge == 0) vars.splitTimer = 100;
+			else if (current.soraHP > 0) alive = true;
 			break;
 		case "0C-02-01":
 		case "0C-00-33":
@@ -239,15 +241,15 @@ split
 		case "0D-06-38":
 		case "0D-05-37":
 		case "0D-07-39":
-			if (current.soraGauge == 17096)vars.splitTimer = 100;
-			else if (current.soraHP > 0)alive = true;
+			if (current.soraGauge == 17096)	vars.splitTimer = 100;
+			else if (current.soraHP > 0) alive = true;
 			break;
 		case "10-07-3A":
-			if (current.medalion!=old.medalion && current.medalion == 0)vars.splitTimer = 100;
-			else if (current.soraHP > 0)alive = true;
+			if (current.medalTimer!=old.medalTimer && current.medalTimer == 0) vars.splitTimer = 100;
+			else if (current.soraHP > 0) alive = true;
 			break;
 		default:
-			if(current.soraHP > 0)alive = true;
+			if(current.soraHP > 0) alive = true;
 			break;
 	}
 	
@@ -258,12 +260,17 @@ split
 				case "02-1C-04":
 				case "04-0D-08":
 				case "02-02-48":
-				case "12-19-48":
+				case "12-19-46":
 					return settings[oldLocation];
 					break;
 				case "02-0E-05":
 					vars.splitTimer = 100;
 					break;
+				case "05-03-14":
+					if (settings[oldLocation+"-W"] && currentLocation == "0F-00-00") 
+						vars.splitTimer = 3600;
+						return true;
+					break;	
 				default:
 					break;
 			}
