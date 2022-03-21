@@ -180,6 +180,7 @@ startup
 				settings.Add("12-17-49", false, "Armored Xemnas 2","KH");
 				settings.Add("12-14-4A", true , "Final Xemnas","KH");
 				
+		/*
 		settings.Add("All Worlds instructions", false, "--------------------------------");
 		settings.Add("allworlds", false, "All Worlds & README (Hover Over)");
 		settings.SetToolTip("allworlds", "Make sure this is selected along with any% and Data Org isn't selected");
@@ -190,6 +191,7 @@ startup
 		settings.Add("ATL", false, "Atlantica", "allworlds");
 		settings.Add("100AW", false, "100 Acre Wood", "allworlds");
 		settings.Add("SP2", false, "Space Paranoïds 2", "allworlds");
+		*/
 
 		settings.Add("Data Org instructions", false, "--------------------------------");
 		settings.Add("dataorg", false, "Data Org & README (Hover Over)");
