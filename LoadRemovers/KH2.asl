@@ -281,7 +281,7 @@ split
 				case "05-03-14":
 					if (settings[oldLocation+"-W"] && currentLocation == "0F-00-00") 
 						vars.splitTimer = 3600;
-						return true;
+						return settings[oldLocation+"-W"];
 					break;	
 				default:
 					break;
