@@ -223,19 +223,22 @@ split
 	string currentLocation = string.Format("{0:X2}-{1:X2}-{2:X2}", current.worldID, current.roomID, current.eventID3);
 	string oldLocation     = string.Format("{0:X2}-{1:X2}-{2:X2}", old.worldID, old.roomID, old.eventID3);
 	
-	bool alive = false;
+	//Conditional cases if Sora or specific things need to survive
 	switch (currentLocation) {
 		case "12-14-4A": 
 		case "12-14-69":
 		case "10-0A-3C":
-			if(current.storyHP > 0 && current.soraHP > 0) alive = true;
+			if(current.storyHP == 0 || current.soraHP == 0)
+				vars.splitTimer = 10;
 			break;
 		case "04-04-37":
 		case "04-04-72":
-			if(current.cloneCount == 0 && current.soraHP > 0) alive = true;
+			if(current.cloneCount > 0 || current.soraHP == 0)
+				vars.splitTimer = 10;
 			break;
 		case "08-07-4C":
-			if(current.storyHP == 228 && old.storyHP > 228) return settings[currentLocation];
+			if(current.storyHP == 228 && old.storyHP > 228)
+				return settings[currentLocation];
 			break;
 		case "04-08-34":
 		case "08-01-46":
@@ -244,8 +247,8 @@ split
 		case "08-09-4B":
 		case "12-0E-3A":
 		case "12-0E-65":
-			if (current.soraGauge == 0) vars.splitTimer = 100;
-			else if (current.soraHP > 0) alive = true;
+			if (current.soraGauge == 0 || current.soraHP == 0)
+				vars.splitTimer = 10;
 			break;
 		case "0C-02-01":
 		case "0C-00-33":
@@ -253,19 +256,20 @@ split
 		case "0D-06-38":
 		case "0D-05-37":
 		case "0D-07-39":
-			if (current.soraGauge == 17096)	vars.splitTimer = 100;
-			else if (current.soraHP > 0) alive = true;
+			if (current.soraGauge == 17096 || current.soraHP == 0)
+				vars.splitTimer = 20;
 			break;
 		case "10-07-3A":
-			if (current.medalTimer!=old.medalTimer && current.medalTimer == 0) vars.splitTimer = 100;
-			else if (current.soraHP > 0) alive = true;
+			if ((current.medalTimer!=old.medalTimer && current.medalTimer == 0) || current.soraHP == 0)
+				vars.splitTimer = 20;
 			break;
 		default:
-			if(current.soraHP > 0) alive = true;
+			if(current.soraHP == 0)
+				vars.splitTimer = 10;
 			break;
 	}
 	
-	if(vars.splitTimer == 0 && alive){
+	if(vars.splitTimer == 0){
 		if (currentLocation!=oldLocation){
 			//print("C:"+currentLocation+" O:"+oldLocation);
 			switch(oldLocation) {
