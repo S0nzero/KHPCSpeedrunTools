@@ -179,6 +179,18 @@ startup
 				settings.Add("12-16-48", false, "Dragon Xemnas","KH");
 				settings.Add("12-17-49", false, "Armored Xemnas 2","KH");
 				settings.Add("12-14-4A", true , "Final Xemnas","KH");
+				
+		settings.Add("All Worlds instructions", false, "--------------------------------");
+		settings.Add("allworlds", false, "All Worlds & README (Hover Over)");
+		settings.SetToolTip("allworlds", "Make sure this is selected along with any% and Data Org isn't selected");
+
+		settings.Add("PRR1", false, "Pride Rock 1", "allworlds");
+		settings.Add("PRR2", false, "Pride Rock 2", "allworlds");
+		settings.Add("OC2", false, "Olympus Coliseum 2", "allworlds");
+		settings.Add("ATL", false, "Atlantica", "allworlds");
+		settings.Add("100AW", false, "100 Acre Wood", "allworlds");
+		settings.Add("SP2", false, "Space Paranoïds 2", "allworlds");
+
 		settings.Add("Data Org instructions", false, "--------------------------------");
 		settings.Add("dataorg", false, "Data Org & README (Hover Over)");
 		settings.SetToolTip("dataorg", "Make sure this is selected and Any% is not selected if running Data Org.\nAuto-Start is not currently supported for Data Org");
