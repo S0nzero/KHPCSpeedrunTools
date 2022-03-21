@@ -223,7 +223,7 @@ split
 			if(current.cloneCount == 0 && current.soraHP > 0) alive = true;
 			break;
 		case "08-07-4C":
-			if(current.storyHP = 228 && old.storyHP > 228) return settings[currentLocation];
+			if(current.storyHP == 228 && old.storyHP > 228) return settings[currentLocation];
 			break;
 		case "04-08-34":
 		case "08-01-46":
