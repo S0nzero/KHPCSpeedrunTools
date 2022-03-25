@@ -285,7 +285,7 @@ split
 					vars.splitTimer = 100;
 					break;
 				case "05-03-14":
-					if (currentLocation == "0F-00-00") {
+					if (current.worldID == 0x0F) {
 						vars.splitTimer = 1800;
 						return settings[oldLocation+"-W"];
 					}
