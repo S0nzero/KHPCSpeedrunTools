@@ -285,9 +285,10 @@ split
 					vars.splitTimer = 100;
 					break;
 				case "05-03-14":
-					if (settings[oldLocation+"-W"] && currentLocation == "0F-00-00") 
-						vars.splitTimer = 3600;
+					if (currentLocation == "0F-00-00") {
+						vars.splitTimer = 1800;
 						return settings[oldLocation+"-W"];
+					}
 					break;	
 				default:
 					break;
