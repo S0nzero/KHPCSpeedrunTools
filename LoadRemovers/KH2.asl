@@ -94,6 +94,7 @@ startup
 				settings.Add("08-09-4B", true , "Shan-Yu","LoD1");
 
 			settings.Add("OC1", true,  "Olympus Coliseum","any");
+				settings.Add("06-05-6F", false, "Hade's Escape","OC1");
 				settings.Add("06-07-72", false, "Cerberus","OC1");
 				settings.Add("06-12-AB", true , "Hydra","OC1");
 
@@ -279,6 +280,7 @@ split
 				case "04-0D-08":
 				case "02-02-48":
 				case "12-19-46":
+				case "06-05-6F":
 					return settings[oldLocation];
 					break;
 				case "02-0E-05":
