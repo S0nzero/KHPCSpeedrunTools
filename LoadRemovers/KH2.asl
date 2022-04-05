@@ -97,11 +97,7 @@ startup
 				settings.Add("08-09-4B", true , "Shan-Yu","LoD1");
 
 			settings.Add("OC1", true,  "Olympus Coliseum","any");
-<<<<<<< HEAD
 				settings.Add("06-05-6F", false, "Hades Escape","OC1");
-=======
-				settings.Add("06-05-6F", false, "Hade's Escape","OC1");
->>>>>>> 8a5e16dd6dacf5059bcc918b169b003d745e9282
 				settings.Add("06-07-72", false, "Cerberus","OC1");
 				settings.Add("06-00-8C", false, "Urns 1","OC1");
 				settings.Add("06-00-8D", false, "Urns 2","OC1");
@@ -295,7 +291,6 @@ split
 				case "02-1C-04":
 				case "04-0D-08":
 				case "02-02-48":
-				case "06-05-6F":
 				case "12-19-46":
 				case "06-05-6F":
 					return settings[oldLocation];
