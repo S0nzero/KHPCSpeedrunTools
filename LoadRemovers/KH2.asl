@@ -76,6 +76,7 @@ startup
 
 			settings.Add("TT1", true, "Twilight Town 1 [Hover Over]", "any");
 			settings.SetToolTip("TT1", "Edit the file and change all instances of '02-1C-04' to '02-1B-04' if you want to split on the cutscene leaving Tower and not the Door.");
+				settings.Add("02-08-6C", false, "Station Plaza fight","TT1");
 				settings.Add("02-1E-99", false, "Yen Sid's Tower Last Fight","TT1");
 				settings.Add("02-1C-04", true , "Leaving Tower (TT1)","TT1");
 	
@@ -288,6 +289,7 @@ split
 			//print("C:"+currentLocation+" O:"+oldLocation);
 			switch(oldLocation) {
 				case "08-03-47":
+				case "02-08-6C":
 				case "02-1C-04":
 				case "04-0D-08":
 				case "02-02-48":
