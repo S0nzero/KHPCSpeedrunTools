@@ -112,6 +112,8 @@ startup
 
 			settings.Add("BC1", true, "Beast Castle 1","any");
 				settings.Add("05-0B-48", false, "Thresholder","BC1");
+				settings.Add("05-03-45", false, "Wake up, Beast !", "BC1");
+				settings.Add("05-05-4E", false, "Shadow Stalker","BC1");
 				settings.Add("05-05-4F", true , "Dark Thorn","BC1");
 
 			settings.Add("0C-00-33", false, "Minnie Escort","any");
@@ -123,16 +125,19 @@ startup
 				settings.Add("0D-03-35", true , "Timeless River Pete","TR");
 
 			settings.Add("PR1", true, "Port Royal 1", "any");
+				settings.Add("10-02-37", false, "Heartless battle", "PR1");
 				settings.Add("10-09-3B", false, "Minute Pirate Fight", "PR1");
 				settings.Add("10-07-3A", false, "Boat Fight", "PR1");
 				settings.Add("10-0A-3C", true , "Barbossa","PR1");
 
 			settings.Add("AG1", true, "Agrabah 1", "any");
 				settings.Add("07-09-02", false, "Abu's crystal", "AG1");
+				settings.Add("07-0D-4F", false, "Chasm of Challenges", "AG1");
 				settings.Add("07-0A-3A", false, "Treasure room fight", "AG1");
 				settings.Add("07-03-3B", true , "Twin Lords","AG1");
 
-			settings.Add("HT1", true, "Halloween Town 1","any"); 
+			settings.Add("HT1", true, "Halloween Town 1","any");
+				settings.Add("0E-06-35", false, "Candy Cane Lane battle","HT1");
 				settings.Add("0E-03-34", false, "Prison Keeper","HT1");
 				settings.Add("0E-09-37", true , "Oogie Boogie","HT1");
 
@@ -164,20 +169,27 @@ startup
 
 			settings.Add("HT2", true, "Halloween Town 2", "any");
 				settings.Add("0E-0A-3E", false, "Trap Lock, Shock & barrel", "HT2");
+				settings.Add("0E-00-3C", false, "Collect the 4 presents", "HT2");
+				settings.Add("0E-0A-3F", false, "Gift Wrapping", "HT2");
 				settings.Add("0E-07-40", true , "The Experiment","HT2");
 
 			settings.Add("AG2", true, "Agrabah 2", "any");
+				settings.Add("07-0E-56", false, "Carpet Battle 1", "AG2");
+				settings.Add("07-0E-57", false, "Carpet Battle 2", "AG2");
+				settings.Add("07-0E-11", false, "Magic Switches", "AG2");
 				settings.Add("07-0E-3D", false, "Escape from the ruins (Carpet autoscroller)", "AG2");
 				settings.Add("07-05-3E", true , "Genie Jafar","AG2");
 
 			settings.Add("LoD2", true, "Land of Dragons 2", "any");
 				settings.Add("08-07-4C", false, "Riku", "LoD2");
+				settings.Add("08-0A-4E", false, "Antechamber battle", "LoD2");
 				settings.Add("08-08-51", false, "Imperial square heartless", "LoD2");
 				settings.Add("08-08-4F", true , "Storm Rider","LoD2");
 
 			settings.Add("TT3", true , "Twilight Town 3","any");
 				settings.Add("02-29-BA", false, "Mansion Nobody waves", "TT3");
-				settings.Add("02-28-A1", true , "Betwixt and Between","TT3");	
+				settings.Add("02-28-A1", true , "Betwixt and Between without Axel","TT3");
+				settings.Add("02-28-A2", true , "Betwixt and Between with Axel","TT3");	
 
 			settings.Add("TWTNW",true, "The World that Never Was", "any");
 				settings.Add("12-15-41", false, "Roxas","TWTNW");
