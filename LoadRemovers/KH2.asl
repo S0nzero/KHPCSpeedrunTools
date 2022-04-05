@@ -86,15 +86,23 @@ startup
 
 			settings.Add("LoD1", true, "Land of Dragons 1", "any");
 				settings.Add("Missions", false, "Missions", "LoD1");
+					settings.Add("08-01-44", false, "Pre-mission fight", "Missions");
 					settings.Add("08-02-45", false, "Mission 1: The Surprise Attack", "Missions");
 					settings.Add("08-02-50", false, "Mission 2: The Ambush", "Missions");
 					settings.Add("08-01-46", false, "Mission 3: The Search", "Missions");
+				settings.Add("08-03-47", false, "Mountain Climb", "LoD1");
 				settings.Add("08-05-48", false, "Cave fight", "LoD1");
 				settings.Add("08-07-49", false, "Summit timed fight", "LoD1");
+				settings.Add("08-08-4A", false, "Imperial square fight", "LoD1");
 				settings.Add("08-09-4B", true , "Shan-Yu","LoD1");
 
 			settings.Add("OC1", true,  "Olympus Coliseum","any");
+				settings.Add("06-05-6F", false, "Hades Escape","OC1");
 				settings.Add("06-07-72", false, "Cerberus","OC1");
+				settings.Add("06-00-8C", false, "Urns 1","OC1");
+				settings.Add("06-00-8D", false, "Urns 2","OC1");
+				settings.Add("06-11-7B", false, "Water clones","OC1");
+				settings.Add("06-08-74", false, "Pete","OC1");			
 				settings.Add("06-12-AB", true , "Hydra","OC1");
 
 			settings.Add("04-0D-08", false, "Acquire Chicken Little (HB2)","any");
@@ -135,6 +143,8 @@ startup
 				settings.Add("11-04-37", true , "Hostile Program","SP1");
 
 			settings.Add("HB3", true, "Hollow Bastion 3","any");
+				settings.Add("04-14-56", false, "Corridor fight", "HB3");
+				settings.Add("04-12-49", false, "Dancers fight", "HB3");
 				settings.Add("04-04-37", false, "Demyx","HB3");
 				settings.Add("04-10-41", false, "Final Fantasy Fights","HB3");
 				settings.Add("04-11-42", true , "1K Heartless","HB3");
@@ -244,7 +254,9 @@ split
 			break;
 		case "04-08-34":
 		case "08-01-46":
+		case "08-01-44":
 		case "08-02-45":
+		case "08-03-47":
 		case "08-02-50":
 		case "08-09-4B":
 		case "12-0E-3A":
@@ -275,9 +287,11 @@ split
 		if (currentLocation!=oldLocation){
 			//print("C:"+currentLocation+" O:"+oldLocation);
 			switch(oldLocation) {
+				case "08-03-47":
 				case "02-1C-04":
 				case "04-0D-08":
 				case "02-02-48":
+				case "06-05-6F":
 				case "12-19-46":
 					return settings[oldLocation];
 					break;
