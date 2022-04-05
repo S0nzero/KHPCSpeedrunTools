@@ -97,7 +97,11 @@ startup
 				settings.Add("08-09-4B", true , "Shan-Yu","LoD1");
 
 			settings.Add("OC1", true,  "Olympus Coliseum","any");
+<<<<<<< HEAD
 				settings.Add("06-05-6F", false, "Hades Escape","OC1");
+=======
+				settings.Add("06-05-6F", false, "Hade's Escape","OC1");
+>>>>>>> 8a5e16dd6dacf5059bcc918b169b003d745e9282
 				settings.Add("06-07-72", false, "Cerberus","OC1");
 				settings.Add("06-00-8C", false, "Urns 1","OC1");
 				settings.Add("06-00-8D", false, "Urns 2","OC1");
@@ -293,15 +297,17 @@ split
 				case "02-02-48":
 				case "06-05-6F":
 				case "12-19-46":
+				case "06-05-6F":
 					return settings[oldLocation];
 					break;
 				case "02-0E-05":
 					vars.splitTimer = 100;
 					break;
 				case "05-03-14":
-					if (settings[oldLocation+"-W"] && currentLocation == "0F-00-00") 
-						vars.splitTimer = 3600;
+					if (current.worldID == 0x0F) {
+						vars.splitTimer = 1800;
 						return settings[oldLocation+"-W"];
+					}
 					break;	
 				default:
 					break;
